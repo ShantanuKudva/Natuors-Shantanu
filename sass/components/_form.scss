@@ -1,0 +1,108 @@
+.form{
+   
+    &-group:not(:last-child){
+        margin-bottom: 2rem ;
+    }
+   
+    &-input{
+        font-size: 1.5rem;
+        padding: 1.5rem 2rem;
+        border-radius: 2px;
+        background-color: rgba(white, 0.5);
+        border: none;
+        font-family: inherit;
+        border-bottom: 3px solid transparent;
+        width: 90%;
+        display: block;
+        color: inherit;
+        transition: all 0.5s ease;
+
+        &:focus{
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba(black, 0.1);
+            border-bottom: 3px solid $color-primary-light-no-opacity;
+        }
+        &:focus:invalid{
+            border-bottom: 3px solid red;
+        }
+        &::-webkit-input-placeholder{
+            color: #999;
+            font-size: 1.5rem;
+        }
+       
+    }
+
+   
+
+   
+    &-label{
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-top: .7rem;
+        display: block;
+        transform: translateY(0);
+        transition: all 0.3s;
+    }
+    
+    &-input:placeholder-shown + &-label{//since input and label are siblings(they are on the same label, we havwe to use the selector
+        //if they are more than one siblings, we have to use the ~ selector
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-5rem)
+      }
+
+      &-radio-group{
+          width: 49%;
+          display:  inline-block;
+
+      }
+
+      &-radio-label{
+          font-size: $default-font;
+          cursor: pointer;
+          position: relative;
+          padding-left: 4.5rem;
+          
+      }
+
+    &-radio-button{
+
+        height: 3rem;
+        width: 3rem;
+        border: 5px solid $color-primary-no-opacity;
+        display: inline-block;
+        border-radius: 100px;
+        position: absolute;
+        left: 0;
+        top: -0.4rem;
+        
+        &::after{//this is for the inner circle
+            height: 1.3rem;
+            width: 1.3rem;
+            content: '';
+            display: block;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: $color-primary-no-opacity;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+    }
+    &-radio-input:checked ~ &-radio-label &-radio-button::after{
+        //since the radio button is the sibling of the radio label and not a sibling of the radio-input, we have to select radio-label using + or ~ sign and then select the child normally
+        //+ is called the adjacent sibling selector and we use it when we have only one child. but we can also use ~ if there are only one child or more than one child
+        //:checked is a pseudo-class and is active when the radio button is checked
+        opacity: 1;
+        
+    }
+    &-radio-input{
+        opacity: 0;
+        content: hidden;
+    }
+    
+}

@@ -1,0 +1,65 @@
+.story{
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba(black, .1);
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font;
+    transform: skewX(-12deg);
+    background-color: rgba(white, 0.6);
+    // & > *{
+    //     transform: skewX(12deg);
+    //     //even if we use this, the shape of the img wont be skewed back to the original shape 
+    //     //because there is already one skew acting on the div which is the translate
+    //    //and so we have to manually add the skew property to all the other elements
+    // }
+
+    &-shape{
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        shape-outside: circle(50% at 50% 50%);
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        //shape outside dosen't change the shape of the parent. it only changes the shape at which the text next to the parent wraps
+        //the first value of the function is the radius of the circle which is half the height and width of the parent
+        //"at..." is the position of the center. 50% 50% means 50% of the horizontal and 50% of the vertical distance
+        clip-path: circle(50% at 50% 50%);
+        transform: translateX(-3rem) skewX(12deg);
+        position: relative;
+        backface-visibility: hidden;
+    }
+    &-img{
+        height: 100%;
+        transform: translateX(-4rem) scale(1.2);
+        transition: all 0.5s;
+        backface-visibility: hidden;
+    }
+    &-text{
+        transform: skewX(12deg);
+    }
+    &-caption{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: white;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        opacity: 0;
+        transition: all 0.5s;
+        backface-visibility: hidden;//this is to remove the glitch that was occuring due to change in translate position when we hover
+        //we did the same thing in header section also
+    }
+    &:hover &-img{
+        filter: blur(3px) brightness(80%);
+        transform: translateX(-4rem) scale(1);
+        
+        
+    }
+    &:hover &-caption{
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+
+}

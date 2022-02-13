@@ -1,0 +1,149 @@
+.navigation{
+    &-checkbox{
+        opacity: 0;
+        display:none;
+    }
+
+    &-button{
+        background-color: white;
+        height: 7rem;
+        width: 7rem;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        border-radius: 50%;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba(black, 0.1);
+        text-align: center;
+        cursor: pointer;
+    }
+
+    &-background{
+        position: fixed;
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient($color-primary-light-no-opacity, $color-primary-dark-no-opacity);
+        //radial gradient starts from the center and it goes to the sides like a circle
+        z-index: 1000;
+        transition: transform 0.8s;
+
+    }
+
+    //  expanded navbar
+    &-nav{
+       
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1500;
+        opacity: 0;
+        width: 0;
+        transition: all 0.8s;
+    }
+
+    &-list{
+        list-style: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 100%;
+    }
+
+    &-item{
+        margin: 1rem;
+        
+    }
+
+    &-link{
+        &:link,
+        &:visited{
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 300;
+            padding: 1rem 2rem;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, white 50%);
+            background-size: 250%;
+            transition: all  0.5s;
+
+            span{
+                margin-right:1.5rem;
+                display: inline-block;
+            }
+            
+        }
+        
+        &:hover,
+        &:active{
+            background-position: 100%;//shifts the styling to the left side
+            color: $color-primary-no-opacity;
+            transform: translateX(1rem);
+            box-shadow: (0 1rem 10rem rgba(black, 0.3));
+        }
+    }
+
+    &-checkbox:checked ~ &-background{
+        transform: scale(80);
+    }
+
+    &-checkbox:checked ~ &-nav{
+        opacity: 1;
+        width: 100%;
+    }
+
+    //icon, instead of having 3 lines, we can style it using before and after. before is the top element and after is the bottom element
+    &-icon{
+        position: relative;
+        margin-top: 3.5rem;
+        &,
+        &::before,
+        &::after{
+            width: 3rem;
+            height: 2px;
+            background-color: #333;
+            display: inline-block;
+           
+        }
+
+        &::before,
+        &::after{
+            content: '';
+            position: absolute;
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        &::before{top: -0.8rem;}
+        &::after{top: 0.8rem;}
+    }
+     
+    &-button:hover &-icon::before{
+        top: -1rem;
+    }
+      
+    &-button:hover &-icon::after{
+        top: 1rem;
+    }
+
+    &-checkbox:checked + &-button &-icon{
+        background-color: transparent;
+    }
+
+    &-checkbox:checked + &-button &-icon::before{
+        top: 0;//this enables to give that x shape;
+        transform: rotate(45deg);
+    }
+
+    &-checkbox:checked + &-button &-icon::after{
+        top: 0;
+        transform: rotate(-45deg);
+    }
+}

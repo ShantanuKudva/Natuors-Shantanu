@@ -1,0 +1,53 @@
+.section-about{
+    background-color: $color-grey-light-1;
+    padding: 25rem 0;
+    margin-top: -20vh;
+}
+
+.section-features {
+    padding: 20rem 0;
+    background-image:  linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),  
+    url(../img/nat-4.jpg);
+    background-size: cover;
+    transform: skewY(-6deg);
+    margin-top: -10rem;
+
+    //direct child selector
+    // selects the direct child of the parent element
+    & >*{
+        transform: skewY(7deg);
+    }
+
+}
+
+.section-tours{
+    background-color: $color-grey-light-1;
+    padding: 25rem 0 15rem 0;
+    margin-top: -10rem;
+}
+
+.section-stories{
+    position: relative;
+    padding: 15rem 0;
+    
+}
+
+.section-book{
+    padding: 30rem 0;
+    background-image: linear-gradient(to right bottom, $color-primary-light-no-opacity, $color-primary-dark-no-opacity);
+}
+
+.book{
+    background-image:linear-gradient(105deg, (rgba(white, 0.9)0%), (rgba(white, 0.75)50%), (transparent)50%),//the idea behind this is that if we add 2 colors on the same position(50%) we get a solid line
+    //the angle here actually specifies the gradient angle, but since we used the solid gradient technique, we also got the cut at 105deg and we need not use the clip-path property
+     url(../img/nat-10.jpg); //instead of using solid gradient, we can also add in white space using a div
+    background-size: cover; //cover also means 100% of width, same as object fit
+    height: 50rem;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba(black, 0.2);
+    &-form{
+        width: 50%;
+        padding: 6rem;
+    }
+
+}

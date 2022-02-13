@@ -1,0 +1,115 @@
+.btn{
+    &,
+    &:link,
+    &:visited{
+    /*the visited link and the initial state of the link should be the same.
+    hence we have choosen the link and the visited state of the link*/
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 15px 40px; 
+        display: inline-block;
+        transition: all 0.2s;
+        border-radius: 100px;
+        position: relative;
+        z-index: 0;
+
+        //these above styles work only for the <a> element and not for an actual <button> element
+        //so for this to work even when we use a normal button element, we have to declare these styles for .btn also
+        border: none;
+        cursor: pointer;
+    }
+
+    &:active,
+    &:focus{
+        outline: none;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        transform: translateY(-1px);
+        
+ 
+    }
+    &:hover{
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        transform: translateY(-3px);/*for the button to move uo, the value should be negative*/
+       
+        &::after{
+            transform: scaleX(1.4)  scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    //white button
+    &-white{
+        background-color: white;
+        color: #777;
+    
+         /*to the button that expands to infinity when we hover*/
+        &::after{
+         background-color: white;
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+        position:absolute;
+       /*the reference here taken is the relative position of the button*/
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.4s;
+      }
+
+    }
+
+      //green button
+      &-green{
+        background-color: $color-primary;
+        color: white;
+
+        &::after{
+            background-color: $color-primary;
+            content: "";
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border-radius: 100px;
+            position:absolute;
+          /*the reference here taken is the relative position of the button*/
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all 0.4s;
+          }
+    }
+    
+    &-animated{
+        animation-name: moveUp;
+        animation-duration: 1s;
+        animation-delay: 0.5s;
+        animation-fill-mode: backwards;
+    }
+    
+    &-text{
+        &:link,
+        &:visited{
+            font-size: $default-font;
+            color: $color-primary;
+            transition: all 0.2s;
+            display: inline-block;
+            text-decoration: none;
+            border-bottom: 1px solid $color-primary;
+            padding: 3px;
+        }
+       
+        &:hover{
+            background-color: $color-primary;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 7px 5px rgba(0, 0, 0, 0.397);
+        }
+
+        &:active{
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.397);
+            transform: translateY(-2px);
+        }
+    }
+}
+
